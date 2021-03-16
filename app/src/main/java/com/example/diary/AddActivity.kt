@@ -24,12 +24,16 @@ class AddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
+
+            val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.US)
+
+            dateTextView.text = sdf.format(Date())
+
             val d = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 dateAndTime[Calendar.YEAR] = year
                 dateAndTime[Calendar.MONTH] = monthOfYear
                 dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth
 
-                val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.US)
                 dateTextView.text = sdf.format(dateAndTime.time)
             }
 
