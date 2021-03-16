@@ -12,12 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.diary.Events
 import com.example.diary.R
 import com.example.diary.adapters.EventsCustomRecyclerAdapter
+import com.example.diary.toast
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 
-class EventsFragment : Fragment() {
+class EventsFragment : Fragment(), EventsCustomRecyclerAdapter.OnItemClickListener {
     private lateinit var eventsViewModel: EventsViewModel
+
+    lateinit var list: List<Events>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,12 +42,12 @@ class EventsFragment : Fragment() {
             } catch (e: Exception) {
             }
 
-            val list = it.where<Events>().findAll()
+            list = it.where<Events>().findAll()
                 .filter { it.title != null }
                 .toList()
 
             if (list.count() > 0) {
-                eventRecyclerView.adapter = EventsCustomRecyclerAdapter(list)
+                eventRecyclerView.adapter = EventsCustomRecyclerAdapter(list, this)
                 imageView.visibility = View.GONE
             }
             else{
@@ -54,6 +57,11 @@ class EventsFragment : Fragment() {
                 imageView.setImageResource(R.drawable.ic_baseline_inbox_24)
             }
         }
+
         return root
+    }
+
+    override fun onItemClick(position: Int) {
+        toast("${list.get(position).description}")
     }
 }
