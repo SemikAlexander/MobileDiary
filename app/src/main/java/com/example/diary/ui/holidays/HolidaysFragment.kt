@@ -9,15 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diary.Holidays
+import com.example.diary.DB.Events
+import com.example.diary.DB.Holidays
 import com.example.diary.R
 import com.example.diary.adapters.HolidaysCustomRecycleAdapter
+import com.example.diary.toast
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 
-class HolidaysFragment  : Fragment() {
+class HolidaysFragment  : Fragment(), HolidaysCustomRecycleAdapter.OnItemClickListener {
     private lateinit var holidaysViewModel: HolidaysViewModel
+
+    lateinit var list: List<Holidays>
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -44,7 +48,7 @@ class HolidaysFragment  : Fragment() {
                     .toList()
 
             if (list.count() > 0) {
-                birthdaysRecyclerView.adapter = HolidaysCustomRecycleAdapter(list)
+                birthdaysRecyclerView.adapter = HolidaysCustomRecycleAdapter(list, this)
                 imageView.visibility = View.GONE
             }
             else{
@@ -55,5 +59,9 @@ class HolidaysFragment  : Fragment() {
             }
         }
         return root
+    }
+
+    override fun onItemClick(position: Int) {
+        toast("${list.get(position).description}")
     }
 }

@@ -9,18 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diary.Birthdays
-import com.example.diary.Events
+import com.example.diary.DB.Birthdays
+import com.example.diary.DB.Holidays
 import com.example.diary.R
 import com.example.diary.adapters.BirthdaysCustomRecyclerAdapter
-import com.example.diary.adapters.EventsCustomRecyclerAdapter
-import com.example.diary.ui.events.EventsViewModel
+import com.example.diary.toast
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 
-class BirthdaysFragment : Fragment() {
+class BirthdaysFragment : Fragment(), BirthdaysCustomRecyclerAdapter.OnItemClickListener {
     private lateinit var bitrhdaysViewModel: BirthdaysViewModel
+
+    lateinit var list: List<Birthdays>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +48,7 @@ class BirthdaysFragment : Fragment() {
                 .toList()
 
             if (list.count() > 0) {
-                eventRecyclerView.adapter = BirthdaysCustomRecyclerAdapter(list)
+                eventRecyclerView.adapter = BirthdaysCustomRecyclerAdapter(list, this)
                 imageView.visibility = View.GONE
             }
             else{
@@ -58,5 +59,9 @@ class BirthdaysFragment : Fragment() {
             }
         }
         return root
+    }
+
+    override fun onItemClick(position: Int) {
+        toast("${list.get(position).namePerson}")
     }
 }

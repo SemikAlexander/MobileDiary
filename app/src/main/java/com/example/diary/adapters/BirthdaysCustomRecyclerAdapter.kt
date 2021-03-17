@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diary.Birthdays
-import com.example.diary.Events
+import com.example.diary.DB.Birthdays
 import com.example.diary.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class BirthdaysCustomRecyclerAdapter(private val values: List<Birthdays>) :
+class BirthdaysCustomRecyclerAdapter(private val values: List<Birthdays>,
+                                     private val listener: OnItemClickListener) :
     RecyclerView.Adapter<BirthdaysCustomRecyclerAdapter.MyViewHolder>() {
 
     override fun getItemCount() = values.size
@@ -28,13 +28,26 @@ class BirthdaysCustomRecyclerAdapter(private val values: List<Birthdays>) :
         holder.smallTextView?.text = sdf.format(values[position].date)
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var largeTextView: TextView? = null
         var smallTextView: TextView? = null
 
         init {
             largeTextView = itemView.findViewById(R.id.textViewLarge)
             smallTextView = itemView.findViewById(R.id.textViewSmall)
+
+            itemView.setOnClickListener(this)
         }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
     }
 }

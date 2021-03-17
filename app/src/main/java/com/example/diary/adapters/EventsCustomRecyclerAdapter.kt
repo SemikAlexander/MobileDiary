@@ -3,10 +3,9 @@ package com.example.diary.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diary.Events
+import com.example.diary.DB.Events
 import com.example.diary.R
 import java.text.SimpleDateFormat
 import java.util.*

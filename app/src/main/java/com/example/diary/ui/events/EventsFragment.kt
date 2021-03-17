@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diary.Events
+import com.example.diary.DB.Events
 import com.example.diary.R
 import com.example.diary.adapters.EventsCustomRecyclerAdapter
 import com.example.diary.toast

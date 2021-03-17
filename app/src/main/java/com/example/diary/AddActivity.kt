@@ -1,13 +1,10 @@
 package com.example.diary
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.example.diary.DB.actionDB
 import com.example.diary.databinding.ActivityAddBinding
-import io.realm.Realm
-import io.realm.kotlin.where
-import io.realm.kotlin.createObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,6 +12,7 @@ class AddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding
 
     private var dateAndTime = Calendar.getInstance()
+    private var typeEvent = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +22,7 @@ class AddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
+
 
             val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.US)
 
@@ -47,28 +46,31 @@ class AddActivity : AppCompatActivity() {
             }
 
             saveButton.setOnClickListener {
-                Realm.getDefaultInstance()
-                    .executeTransaction { it ->
-                        try {
-                            it.createObject<Events>()
-                        } catch (e: Exception) {
-                        }
+                val format = SimpleDateFormat("dd.MM.yyyy")
 
+                val action = actionDB()
 
-                        it.insertOrUpdate(Events().apply {
-                            title = titleEditText.text.toString()
-                            description = descriptionEditText.text.toString()
-                            val format = SimpleDateFormat("dd.MM.yyyy")
-                            date = format.parse(dateTextView.text.toString())
-                        })
+                val selected: String = eventSpinner.getSelectedItem().toString()
 
-                        it.where<Events>().findAll()
-                            .filter { it.title != null }
-                            .toList()
-                            .forEach {
-                                Log.e("test", it.title ?: "null")
-                            }
+                when (selected) {
+                    "Event" -> {
+                        action.addEvent(
+                                titleEditText.text.toString(),
+                                descriptionEditText.text.toString(),
+                                format.parse(dateTextView.text.toString()))
                     }
+                    "Holiday" -> {
+                        action.addEvent(
+                                titleEditText.text.toString(),
+                                descriptionEditText.text.toString(),
+                                format.parse(dateTextView.text.toString()))
+                    }
+                    "Birthday" -> {
+                        action.addBirthdays(titleEditText.text.toString(),
+                                format.parse(dateTextView.text.toString()))
+                    }
+                }
+
                 toast(getString(R.string.record_added))
             }
         }

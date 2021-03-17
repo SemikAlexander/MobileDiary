@@ -20,4 +20,11 @@
     <string name="description_hint">Enter the description</string>
     <string name="record_added">Record was add</string>
     <string name="empty_event_view">There\'s nothing here yet</string>
+
+     <string-array name="name_type_events">
+         <item>Event</item>
+         <item>Holiday</item>
+         <item>Birthday</item>
+     </string-array>
+
 </resources>
