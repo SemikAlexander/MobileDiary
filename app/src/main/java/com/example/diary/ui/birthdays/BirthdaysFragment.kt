@@ -43,7 +43,7 @@ class BirthdaysFragment : Fragment(), BirthdaysCustomRecyclerAdapter.OnItemClick
             } catch (e: Exception) {
             }
 
-            val list = it.where<Birthdays>().findAll()
+            list = it.where<Birthdays>().findAll()
                 .filter { it.namePerson != null }
                 .toList()
 

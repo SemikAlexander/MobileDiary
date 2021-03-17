@@ -19,6 +19,17 @@
         android:background="@drawable/border"
         android:layout_marginStart="16dp" />
 
+    <Spinner
+        android:id="@+id/eventSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="38dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="66dp"
+        android:entries="@array/name_type_events"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
@@ -37,7 +48,7 @@
         android:layout_height="fill_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="111dp"
         android:layout_marginBottom="100dp"
         android:ems="10"
         android:gravity="start|top"

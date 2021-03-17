@@ -43,7 +43,7 @@ class HolidaysFragment  : Fragment(), HolidaysCustomRecycleAdapter.OnItemClickLi
             } catch (e: Exception) {
             }
 
-            val list = it.where<Holidays>().findAll()
+            list = it.where<Holidays>().findAll()
                     .filter { it.title != null }
                     .toList()
 
@@ -62,6 +62,6 @@ class HolidaysFragment  : Fragment(), HolidaysCustomRecycleAdapter.OnItemClickLi
     }
 
     override fun onItemClick(position: Int) {
-        toast("${list.get(position).description}")
+        toast("${list[position].description}")
     }
 }

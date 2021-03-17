@@ -17,6 +17,7 @@
     <string name="title_record">Title</string>
     <string name="save_button">Save</string>
     <string name="title_hint">Enter the title</string>
+     <string name="name_person_hint">Enter the name of person</string>
     <string name="description_hint">Enter the description</string>
     <string name="record_added">Record was add</string>
     <string name="empty_event_view">There\'s nothing here yet</string>

@@ -1,12 +1,11 @@
 package com.example.diary.DB
+
 import io.realm.Realm
 import io.realm.kotlin.createObject
-import java.lang.Exception
-import java.text.SimpleDateFormat
 import java.util.*
 
-public class actionDB {
-    public fun addEvent(inputTitle: String,
+class ActionDB {
+    fun addEvent(inputTitle: String,
                          inputDescription: String,
                          inputDate: Date){
         Realm.getDefaultInstance().executeTransaction {
@@ -23,7 +22,7 @@ public class actionDB {
         }
     }
 
-    public fun addBirthdays(inputName: String,
+    fun addBirthdays(inputName: String,
                         inputDate: Date){
         Realm.getDefaultInstance().executeTransaction {
             try {
@@ -38,7 +37,7 @@ public class actionDB {
         }
     }
 
-    public fun addHoliday(inputTitle: String,
+    fun addHoliday(inputTitle: String,
                         inputDescription: String,
                         inputDate: Date){
         Realm.getDefaultInstance().executeTransaction {
