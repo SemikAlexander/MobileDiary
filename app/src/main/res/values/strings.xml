@@ -1,4 +1,4 @@
- <resources>
+<resources>
     <string name="app_name">Diary</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,15 +17,15 @@
     <string name="title_record">Title</string>
     <string name="save_button">Save</string>
     <string name="title_hint">Enter the title</string>
-     <string name="name_person_hint">Enter the name of person</string>
+    <string name="name_person_hint">Enter the name of person</string>
     <string name="description_hint">Enter the description</string>
     <string name="record_added">Record was add</string>
     <string name="empty_event_view">There\'s nothing here yet</string>
 
-     <string-array name="name_type_events">
-         <item>Event</item>
-         <item>Holiday</item>
-         <item>Birthday</item>
-     </string-array>
+    <string-array name="name_type_events">
+        <item>Event</item>
+        <item>Holiday</item>
+        <item>Birthday</item>
+    </string-array>
 
 </resources>
