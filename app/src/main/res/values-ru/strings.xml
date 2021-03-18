@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Дневник</string>
+    <string name="navigation_drawer_open">Откройте навигационный ящик</string>
+    <string name="navigation_drawer_close">Закрыть навигационный ящик</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Навигационный заголовок</string>
+    <string name="action_settings">Настройки</string>
+    <string name="menu_home">Домой</string>
+    <string name="menu_events">События</string>
+    <string name="menu_gallery">Галерея</string>
+    <string name="menu_slideshow">Слайд-шоу</string>
+    <string name="hello_blank_fragment">Привет пустой фрагмент</string>
+    <string name="menu_birthdays">Дни рождения</string>
+    <string name="menu_holidays">Каникулы</string>
+    <string name="title_record">Заглавие</string>
+    <string name="save_button">Сохранить</string>
+    <string name="title_hint">Введите название</string>
+    <string name="name_person_hint">Введите имя человека</string>
+    <string name="description_hint">Введите описание</string>
+    <string name="record_added">Запись была добавлена</string>
+    <string name="empty_event_view">Здесь еще ничего нет</string>
+    <string name="save_settings">Сохранить настройки</string>
+    <string name="language_string">Язык</string>
+</resources>

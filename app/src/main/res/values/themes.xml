@@ -26,7 +26,7 @@
         <!-- Customize your theme here. -->
 
         <item name="colorOnSecondary">#009688</item>
-        <item name="colorSecondaryVariant">@color/hint_text</item>
+        <item name="colorSecondaryVariant">@color/white</item>
 
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/hint_text</item>
