@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.diary.databinding.ActivitySettingsBinding
-import com.example.diary.ui.events.EventsFragment
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -24,6 +23,10 @@ class SettingsActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        pref.getString("language", null)?.apply {
+            setLocale(this@SettingsActivity, this)
+        }
 
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)

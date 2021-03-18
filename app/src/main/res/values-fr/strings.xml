@@ -24,4 +24,7 @@
     <string name="save_settings">Enregistrer les paramètres</string>
     <string name="language_string">Langue</string>
     <string name="app_description">Tenez des journaux, c\'est la littérature du futur!</string>
+    <string name="item_events">Événement</string>
+    <string name="item_birthdays">Anniversaire</string>
+    <string name="item_holidays">Vacances</string>
 </resources>

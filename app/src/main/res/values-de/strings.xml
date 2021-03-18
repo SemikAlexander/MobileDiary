@@ -24,4 +24,7 @@
     <string name="save_settings">Einstellungen speichern</string>
     <string name="language_string">Sprachlich</string>
     <string name="app_description">Führen Sie Tagebücher, das ist Literatur der Zukunft!</string>
+    <string name="item_events">Veranstaltung</string>
+    <string name="item_birthdays">Geburtstag</string>
+    <string name="item_holidays">Urlaub</string>
 </resources>

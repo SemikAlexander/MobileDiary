@@ -1,5 +1,6 @@
 package com.example.diary.ui.birthdays
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.diary.DB.ActionDB
 import com.example.diary.DB.Birthdays
 import com.example.diary.DB.Holidays
 import com.example.diary.R
@@ -22,6 +24,8 @@ class BirthdaysFragment : Fragment(), BirthdaysCustomRecyclerAdapter.OnItemClick
     private lateinit var bitrhdaysViewModel: BirthdaysViewModel
 
     lateinit var list: List<Birthdays>
+
+    val action = ActionDB()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,26 +43,17 @@ class BirthdaysFragment : Fragment(), BirthdaysCustomRecyclerAdapter.OnItemClick
 
         eventRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        Realm.getDefaultInstance().executeTransaction{ it ->
-            try {
-                it.createObject<Birthdays>()
-            } catch (e: Exception) {
-            }
+        list = action.getAllBirthdays()
 
-            list = it.where<Birthdays>().findAll()
-                .filter { it.namePerson != null }
-                .toList()
+        if (list.count() > 0) {
+            eventRecyclerView.adapter = BirthdaysCustomRecyclerAdapter(list, this)
+            imageView.visibility = View.GONE
+        }
+        else{
+            imageView.visibility = View.VISIBLE
+            eventRecyclerView.visibility = View.GONE
 
-            if (list.count() > 0) {
-                eventRecyclerView.adapter = BirthdaysCustomRecyclerAdapter(list, this)
-                imageView.visibility = View.GONE
-            }
-            else{
-                imageView.visibility = View.VISIBLE
-                eventRecyclerView.visibility = View.GONE
-
-                imageView.setImageResource(R.drawable.ic_baseline_inbox_24)
-            }
+            imageView.setImageResource(R.drawable.ic_baseline_inbox_24)
         }
         return root
     }

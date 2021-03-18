@@ -23,6 +23,10 @@
     <string name="save_settings">Save settings</string>
     <string name="language_string">Language</string>
 
+    <string name="item_events">Event</string>
+    <string name="item_holidays">Holiday</string>
+    <string name="item_birthdays">Birthday</string>
+
     <string-array name="name_type_events">
         <item>Event</item>
         <item>Holiday</item>

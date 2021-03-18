@@ -24,4 +24,7 @@
     <string name="save_settings">Guardar configuración</string>
     <string name="language_string">Idioma</string>
     <string name="app_description">Mantenga diarios, esta es la literatura del futuro!</string>
+    <string name="item_events">Evento</string>
+    <string name="item_birthdays">Cumpleaños</string>
+    <string name="item_holidays">Vacaciones</string>
 </resources>

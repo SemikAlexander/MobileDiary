@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.diary.DB.ActionDB
 import com.example.diary.DB.Events
 import com.example.diary.R
 import com.example.diary.SettingsActivity
@@ -19,6 +20,8 @@ import io.realm.kotlin.where
 
 class EventsFragment : Fragment(), EventsCustomRecyclerAdapter.OnItemClickListener {
     private lateinit var eventsViewModel: EventsViewModel
+
+    val action = ActionDB()
 
     lateinit var list: List<Events>
 
@@ -38,26 +41,17 @@ class EventsFragment : Fragment(), EventsCustomRecyclerAdapter.OnItemClickListen
 
         eventRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        Realm.getDefaultInstance().executeTransaction{ it ->
-            try {
-                it.createObject<Events>()
-            } catch (e: Exception) {
-            }
+        list = action.getAllEvents()
 
-            list = it.where<Events>().findAll()
-                .filter { it.title != null }
-                .toList()
+        if (list.count() > 0) {
+            eventRecyclerView.adapter = EventsCustomRecyclerAdapter(list, this)
+            imageView.visibility = View.GONE
+        }
+        else{
+            imageView.visibility = View.VISIBLE
+            eventRecyclerView.visibility = View.GONE
 
-            if (list.count() > 0) {
-                eventRecyclerView.adapter = EventsCustomRecyclerAdapter(list, this)
-                imageView.visibility = View.GONE
-            }
-            else{
-                imageView.visibility = View.VISIBLE
-                eventRecyclerView.visibility = View.GONE
-
-                imageView.setImageResource(R.drawable.ic_baseline_inbox_24)
-            }
+            imageView.setImageResource(R.drawable.ic_baseline_inbox_24)
         }
 
         return root
