@@ -25,6 +25,7 @@
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
         android:text="@string/save_settings"
         android:backgroundTint="?attr/colorOnSecondary"
         android:textColor="?attr/colorSecondaryVariant"/>
@@ -58,6 +59,6 @@
         android:layout_toRightOf="@id/languageTextView"
         android:layout_toEndOf="@id/languageTextView"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="66dp"/>
+        android:layout_marginTop="62dp"/>
 
 </RelativeLayout>

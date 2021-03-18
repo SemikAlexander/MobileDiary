@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.diary.databinding.ActivitySettingsBinding
+import com.example.diary.ui.events.EventsFragment
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -94,7 +95,6 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity<MainActivity>()
         finish()
     }
 }

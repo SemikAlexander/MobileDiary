@@ -13,7 +13,7 @@
     <string name="menu_slideshow">Слайд-шоу</string>
     <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="menu_birthdays">Дни рождения</string>
-    <string name="menu_holidays">Каникулы</string>
+    <string name="menu_holidays">Праздники</string>
     <string name="title_record">Заглавие</string>
     <string name="save_button">Сохранить</string>
     <string name="title_hint">Введите название</string>
@@ -23,4 +23,5 @@
     <string name="empty_event_view">Здесь еще ничего нет</string>
     <string name="save_settings">Сохранить настройки</string>
     <string name="language_string">Язык</string>
+    <string name="app_description">Ведите дневники, это литература будущего!</string>
 </resources>

@@ -1,9 +1,7 @@
 package com.example.diary.ui.holidays
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.diary.DB.Events
 import com.example.diary.DB.Holidays
 import com.example.diary.R
+import com.example.diary.SettingsActivity
 import com.example.diary.adapters.HolidaysCustomRecycleAdapter
+import com.example.diary.startActivity
 import com.example.diary.toast
 import io.realm.Realm
 import io.realm.kotlin.createObject
@@ -28,6 +28,8 @@ class HolidaysFragment  : Fragment(), HolidaysCustomRecycleAdapter.OnItemClickLi
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
+
         holidaysViewModel =
                 ViewModelProvider(this).get(HolidaysViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_holidays, container, false)
@@ -59,6 +61,24 @@ class HolidaysFragment  : Fragment(), HolidaysCustomRecycleAdapter.OnItemClickLi
             }
         }
         return root
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.action_settings -> {
+                startActivity<SettingsActivity>()
+                return true
+            }
+        }
+        return super.onContextItemSelected(item)
     }
 
     override fun onItemClick(position: Int) {

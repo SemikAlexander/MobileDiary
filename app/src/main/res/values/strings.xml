@@ -28,5 +28,6 @@
         <item>Holiday</item>
         <item>Birthday</item>
     </string-array>
+    <string name="app_description">Keep diaries, this is the literature of the future!</string>
 
 </resources>

@@ -7,4 +7,5 @@
     android:padding="5dip"
     android:text="@string/menu_birthdays"
     android:textColor="?attr/colorSecondaryVariant"
+    android:background="?attr/colorOnPrimary"
     android:textSize="18sp"/>
