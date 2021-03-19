@@ -24,8 +24,8 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        pref.getString("language", null)?.apply {
-            setLocale(this@SettingsActivity, this)
+        pref.getString("language", null)?.let {
+            setLocale(this, it)
         }
 
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -73,18 +73,21 @@ class SettingsActivity : AppCompatActivity() {
                     editor.putString("mode", "dark")
                 }
 
+                editor.putBoolean("is_need_recreate", true)
+
                 editor.apply()
                 recreate()
             }
 
             saveButton.setOnClickListener {
-                editor.apply()
                 pref.getString("language", null)?.apply {
-
                     setLocale(this@SettingsActivity, this)
                 }
-                startActivity<SettingsActivity>()
-                finish()
+
+                editor.putBoolean("is_need_recreate", true)
+
+                editor.apply()
+                recreate()
             }
         }
     }

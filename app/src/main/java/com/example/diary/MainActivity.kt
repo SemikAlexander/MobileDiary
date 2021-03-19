@@ -1,5 +1,6 @@
 package com.example.diary
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,8 +15,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.edit
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +26,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val pref = getSharedPreferences("setting", Context.MODE_PRIVATE)
+        if (pref.getString("mode", null).toString() == "dark")
+            setTheme(R.style.Theme_DiaryNight)
+        else
+            setTheme(R.style.Theme_Diary)
+
+        val edit = pref.edit()
+
+        pref.getString("language", null)?.let {
+            setLocale(this, it)
+        }
+
         setContentView(R.layout.activity_main)
 
         Realm.init(this)    /*Initialize Realm*/
@@ -60,5 +76,24 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        val pref = getSharedPreferences("setting", Context.MODE_PRIVATE)
+        val isNeedRecreate = pref.getBoolean("is_need_recreate", false)
+
+        if (isNeedRecreate) {
+            pref.edit { putBoolean("is_need_recreate", false) }
+            recreate()
+        }
+    }
+
+    private fun setLocale(context: Context, locale: String) {
+        context.resources.configuration.locale = Locale(locale)
+        context.resources.updateConfiguration(
+            context.resources.configuration,
+            context.resources.displayMetrics
+        )
     }
 }
