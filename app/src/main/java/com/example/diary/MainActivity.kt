@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            startActivity<AddActivity>()
+            startActivity<EventsActivity>(){
+                putExtra("type_activity", "add")
+            }
         }
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)

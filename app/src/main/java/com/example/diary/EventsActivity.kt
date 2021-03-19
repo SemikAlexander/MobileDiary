@@ -2,18 +2,18 @@ package com.example.diary
 
 import android.app.DatePickerDialog
 import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import com.example.diary.DB.ActionDB
-import com.example.diary.databinding.ActivityAddBinding
+import com.example.diary.databinding.ActivityEventsBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAddBinding
+class EventsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityEventsBinding
 
     private var dateAndTime = Calendar.getInstance()
 
@@ -27,13 +27,13 @@ class AddActivity : AppCompatActivity() {
         pref.edit()
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add)
+        setContentView(R.layout.activity_events)
 
         pref.getString("language", null)?.apply {
-            setLocale(this@AddActivity, this)
+            setLocale(this@EventsActivity, this)
         }
 
-        binding = ActivityAddBinding.inflate(layoutInflater)
+        binding = ActivityEventsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val map = mapOf(getString(R.string.item_events) to "event",
@@ -43,10 +43,13 @@ class AddActivity : AppCompatActivity() {
         val values = map.values.toList()
         val keys = map.keys
 
-        var eventType = resources.getStringArray(R.array.name_type_events)
-
         binding.apply {
-            eventSpinner.adapter = ArrayAdapter(this@AddActivity, R.layout.spinner_item, keys.toMutableList())
+            when (intent.getStringExtra("type_activity")){
+                "add" -> deleteButtom.visibility = View.GONE
+                "edit" -> deleteButtom.visibility = View.VISIBLE
+            }
+
+            eventSpinner.adapter = ArrayAdapter(this@EventsActivity, R.layout.spinner_item, keys.toMutableList())
             eventSpinner.setSelection(0)
 
             eventSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -85,10 +88,10 @@ class AddActivity : AppCompatActivity() {
 
             dateTextView.setOnClickListener {
                 DatePickerDialog(
-                    this@AddActivity, d,
-                    dateAndTime.get(Calendar.YEAR),
-                    dateAndTime.get(Calendar.MONTH),
-                    dateAndTime.get(Calendar.DAY_OF_MONTH)
+                        this@EventsActivity, d,
+                        dateAndTime.get(Calendar.YEAR),
+                        dateAndTime.get(Calendar.MONTH),
+                        dateAndTime.get(Calendar.DAY_OF_MONTH)
                 ).show()
             }
 
